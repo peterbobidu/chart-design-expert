@@ -2,7 +2,7 @@
 
 ## 仓库维护
 
-本仓库根目录就是可安装的 `chart-design-advisor` skill。`main` 保存已合入版本；修改时从 `main` 创建 `codex/` 分支，更新相关文档与验证记录，运行检查后提交 PR。PR 合入后再将仓库 `main` 同步到本机 `~/.codex/skills/chart-design-advisor`。详细约定见 [AGENTS.md](AGENTS.md)，自动检查见 [Validate skill](.github/workflows/validate.yml)。
+本仓库根目录就是可安装的 `chart-design-advisor` skill。`main` 保存已合入版本；修改时从 `main` 创建 `codex/` 分支，更新相关文档与验证记录，运行检查后提交 PR。PR 合入后再将仓库 `main` 同步到本机 `~/.codex/skills/chart-design-advisor`。操作步骤与当前 GitHub 权限限制见 [CONTRIBUTING.md](CONTRIBUTING.md)；Agent 约定见 [AGENTS.md](AGENTS.md)，自动检查见 [Validate skill](.github/workflows/validate.yml)。
 
 本版在v0.6.7基础上增加既有工程与编译交付管道适配，保留设计规范、四箱体骨架和独立工程验证路径。运行入口是[SKILL.md](SKILL.md)，方法状态由[索引](03-methods/index.md)维护。
 
