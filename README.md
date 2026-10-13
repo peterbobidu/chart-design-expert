@@ -8,7 +8,7 @@
 
 交互原型优先接入既有工程；无承载工程时默认生成Vue 3 + TypeScript + ECharts组件及Vite预览工程，遵从用户指定的其他技术栈。原型工程随附[HANDOFF.md交接说明](04-references/prototype/handoff.md)。ECharts无法实现、需要其他技术配合或尚无法确认的能力，按[告知规则](04-references/prototype/echarts-capabilities.md)说明原因、建议与交付影响。
 
-维护时执行 `python3 scripts/check_package.py`；验证范围见[VALIDATION.md](VALIDATION.md)，用例与历史分别见[测试索引](05-tests/README.md)、[CHANGELOG](CHANGELOG.md)。已编写方法、代码中有实现和真实运行通过是不同状态。
+维护者在已配置Python的维护机上执行 `python3 scripts/check_package.py`（生成原型时不需要，不为此安装Python或Command Line Tools）；验证范围见[VALIDATION.md](VALIDATION.md)，用例与历史分别见[测试索引](05-tests/README.md)、[CHANGELOG](CHANGELOG.md)。已编写方法、代码中有实现和真实运行通过是不同状态。
 
 半导体规范以用户提供文档的整理版接入，待核对项和缺失依赖随包记录；其他原始规范资产、六领域内部组件API未随包提供；不虚构业务接入或负责人。历史HTML保留原字节，其框架和旧视觉参数不覆盖当前交付要求，外部CDN依赖不代表离线可运行。
 

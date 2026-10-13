@@ -10,13 +10,17 @@
 
 ### 新建独立默认工程
 
-至少有 `package.json`、锁文件、`index.html`、`src` 中的Vue组件与TypeScript逻辑、`README.md`、`HANDOFF.md`。预览页和交付组件使用同一实现。运行：
+至少有 `package.json`、锁文件、`index.html`、`src` 中的Vue组件与TypeScript逻辑、`README.md`、`HANDOFF.md`。预览页和交付组件使用同一实现。
+
+以下脚本**仅适用于新建独立默认Vite工程**，既有工程使用环境指定门禁，不执行此命令。仅在环境已确认提供可用Python解释器时运行；本机没有可用Python或可用性不明时，不尝试安装Python或Command Line Tools，也不通过试运行系统python3来探测，跳过脚本并记录为未验证。不得因此阻止已具备条件的其他验证或要求设计师安装环境。
+
+满足上述条件后运行（解释器以环境确认的实际命令为准）：
 
 ```bash
 python3 /path/to/chart-design-advisor/scripts/check_prototype.py /path/to/output --run
 ```
 
-此脚本仅适用于新建独立默认Vite工程，检查结构并执行所用包管理器的test、build。依赖未安装时按锁文件安装；环境无法运行时记录未验证。脚本执行build不自动证明包含类型检查，需结合实际命令。用户指定其他技术栈时按其工程机制验证，不套用本脚本。
+此脚本检查结构并执行所用包管理器的test、build。依赖未安装时按锁文件安装；环境无法运行时记录未验证。脚本执行build不自动证明包含类型检查，需结合实际命令。用户指定其他技术栈时按其工程机制验证，不套用本脚本。
 
 ## 目标尺寸和交互
 

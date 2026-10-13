@@ -1,5 +1,12 @@
 # v0.6.8 验证记录
 
+## 2026-10-13 Python检查范围说明
+
+- 已核对独立工程检查的限制位于命令之前，README明确维护机用途；仅修改文档及维护记录，版本仍为0.6.8。
+- 本地 `python3 scripts/check_package.py` 和 `git diff --check` 已通过；使用本维护机既有Python，未安装解释器或Command Line Tools。
+- 未复现内网Python安装弹窗，原因仍待现场命令证据确认；未重新执行浏览器、内网门禁或干净环境安装验证。PR自动检查以GitHub Actions实际结果为准。
+
+
 ## 2026-10-13 GitHub 仓库维护
 
 - 私有仓库初始 `main` 的 GitHub Actions `Validate skill` 运行通过。
