@@ -2,6 +2,9 @@
 
 ## 2026-10-13 Python检查范围说明
 
+- PR #4审阅补正：两份运行时入口同步Python前置条件，补充直接检查结构及使用现有Node/包管理器执行test/build的路径。本次静态核对不能证明无Python机器上的Agent执行行为或弹窗已解决。
+- 本地绕开Python包装脚本，直接运行骨架的 `npm test`（5项通过）与 `npm run build`（vue-tsc及Vite构建通过，有大于500kB的chunk体积警告）。这验证了现有Node命令可独立执行；本机仍有Python，未模拟缺Python或系统stub环境。
+
 - 已核对独立工程检查的限制位于命令之前，README明确维护机用途；仅修改文档及维护记录，版本仍为0.6.8。
 - 本地 `python3 scripts/check_package.py` 和 `git diff --check` 已通过；使用本维护机既有Python，未安装解释器或Command Line Tools。
 - 未复现内网Python安装弹窗，原因仍待现场命令证据确认；未重新执行浏览器、内网门禁或干净环境安装验证。PR自动检查以GitHub Actions实际结果为准。
