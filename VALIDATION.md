@@ -2,6 +2,14 @@
 
 ## 2026-10-13 Python检查范围说明
 
+### 第二轮审阅：范围与后续排查
+
+- 已同步 `05-tests/vue-echarts-cases.md` 为有Python与无Python两条等价路径；不因跳过包装脚本而否定已实际执行的结构、test/build检查。
+- 静态读取本机另一个Skill `chart-vue-creator/SKILL.md` 与 `scripts/install/install.sh`：下载Node时及 `--check` 诊断路径均存在 `require_py`；函数检查Python命令路径是否存在，缺失时提示 `xcode-select --install`。确认的是代码入口存在，不是现场弹窗由此触发。
+- **另行跟进（不属于本PR修复范围）**：由creator维护者取得弹窗前实际命令、参数、父子调用链和相关日志（隐去凭据），区分advisor检查、creator下载Node、creator诊断等入口；若命中creator安装路径，在其源码仓库单独修复，并覆盖无Node/无Python以及诊断分支的验证。
+- 本PR未改动creator、未执行其安装/诊断脚本，也未触发系统安装用于复现。不得将本PR或CI通过作为现场问题已解决的证据。第二轮修改后包检查及差异空白检查通过；行为与内网环境仍未实测。
+
+
 - PR #4审阅补正：两份运行时入口同步Python前置条件，补充直接检查结构及使用现有Node/包管理器执行test/build的路径。本次静态核对不能证明无Python机器上的Agent执行行为或弹窗已解决。
 - 本地绕开Python包装脚本，直接运行骨架的 `npm test`（5项通过）与 `npm run build`（vue-tsc及Vite构建通过，有大于500kB的chunk体积警告）。这验证了现有Node命令可独立执行；本机仍有Python，未模拟缺Python或系统stub环境。
 
