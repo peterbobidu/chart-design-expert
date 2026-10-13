@@ -33,6 +33,8 @@ if not (ROOT / 'SKILL.md').is_file():
     raise SystemExit(f'FAIL: no SKILL.md at {ROOT}')
 
 for document in ROOT.rglob('*.md'):
+    if any(part in {'node_modules', 'dist'} for part in document.relative_to(ROOT).parts):
+        continue
     for number, line in enumerate(document.read_text(encoding='utf-8').splitlines(), 1):
         for raw in links.findall(line):
             raw = raw.strip().strip('<>')

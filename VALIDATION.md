@@ -1,5 +1,10 @@
 # v0.6.8 验证记录
 
+## 2026-10-13 GitHub 仓库维护
+
+- 私有仓库初始 `main` 的 GitHub Actions `Validate skill` 运行通过。
+- 本地 `npm ci` 后，`scripts/check_package.py` 已跳过生成的 `node_modules` 与 `dist` 目录；包内链接/锚点和13项路由检查仍通过。本次未改变图表设计规则或原型实现。
+
 ## 2026-10-13 承载工程兼容
 
 已通过：包内链接/锚点与13张方法卡路由检查、skill-creator入口校验、独立骨架结构检查、ZIP内容及本地同步一致性核对。结构检查未使用--run，未重新执行测试、生产构建或浏览器检查。
