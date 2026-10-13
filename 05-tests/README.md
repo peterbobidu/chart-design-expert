@@ -8,6 +8,7 @@
 | 路由与编号 | [R01–R27](router-cases.md)、[对象/行为映射](router/analysis-object-behavior-cases.md)、[旧11兼容入口](legacy-method-11-cases.md) |
 | 图表规范 | [规范用例](chart-spec-cases.md)、[领域选择](domain-spec-cases.md) |
 | Method 01 | [趋势评价](../04-references/methods/01/evaluation.md) |
+| Method 02 | [路由与语义用例](method-02-cases.md)、[评价](../04-references/methods/02/evaluation.md) |
 | Method 03 | [分支用例](method-03-cases.md)、[总体验收](../04-references/methods/03/evaluation.md) |
 | 半导体快照 | [14项用例](method-03-snapshot-cases.md)、[专项验收](../04-references/methods/03/snapshot-evaluation.md) |
 | Method 04 | [关联用例](method-04-cases.md)、[评价](../04-references/methods/04/evaluation.md) |
