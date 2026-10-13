@@ -2,6 +2,13 @@
 
 ## 2026-10-13 Python检查范围说明
 
+### 第三轮审阅：结构与执行状态一致性
+
+- 两份交付规则及回归用例统一：必需文件、依赖声明、test/build脚本缺失或package.json不可解析为结构FAIL；结构符合但运行环境缺失为对应执行项未验证；实际命令失败为FAIL。
+- 在维护机临时副本实测check_prototype.py：删除test、删除build、删除vite声明均返回FAIL（退出码1）；保留完整结构但不带node_modules，结构PASS、执行UNVERIFIED（退出码2）。原骨架未改动。
+- 包检查与git diff --check通过。本轮未重新运行浏览器或无Python环境Agent测试，未复现内网弹窗；上述实测仅核对脚本判定与新文档是否一致。
+
+
 ### 第二轮审阅：范围与后续排查
 
 - 已同步 `05-tests/vue-echarts-cases.md` 为有Python与无Python两条等价路径；不因跳过包装脚本而否定已实际执行的结构、test/build检查。
