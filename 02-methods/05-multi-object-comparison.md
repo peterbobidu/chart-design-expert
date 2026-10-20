@@ -27,4 +27,4 @@
 
 ## 读取
 
-涉及混合方向、目标型、筛选、轴范围、均衡判断或复杂比较时读 [详解](../04-references/methods/05/detail.md)；数据转换/评分读 [数据语义](../04-references/data-semantics.md)。需要案例读 [案例](../04-references/methods/05/examples.md)。验收见[评价](../04-references/methods/05/evaluation.md)。
+涉及混合方向、目标型、筛选、轴范围、均衡判断或复杂比较时读 [详解](../03-references/methods/05/detail.md)；数据转换/评分读 [数据语义](../03-references/data-semantics.md)。需要案例读 [案例](../03-references/methods/05/examples.md)。验收见[评价](../03-references/methods/05/evaluation.md)。

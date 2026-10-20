@@ -16,4 +16,4 @@
 
 单指标趋势用01；有限空间概览用03；多对象多指标优劣用05；按事件记录还原过程用06。
 
-生成关联原型或涉及时间对齐、拟合、联动时读[详解](../04-references/methods/04/detail.md)；需要案例读[案例](../04-references/methods/04/examples.md)，验收读[评价](../04-references/methods/04/evaluation.md)。
+生成关联原型或涉及时间对齐、拟合、联动时读[详解](../03-references/methods/04/detail.md)；需要案例读[案例](../03-references/methods/04/examples.md)，验收读[评价](../03-references/methods/04/evaluation.md)。

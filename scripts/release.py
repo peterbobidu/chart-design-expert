@@ -80,7 +80,7 @@ def validate_policy(policy):
 def validate_tree(root):
     checker = root / 'scripts/check_package.py'
     subprocess.run([sys.executable, str(checker), str(root)], check=True)
-    prototype = root / '06-assets/semiconductor-four-box-vue'
+    prototype = root / '04-assets/semiconductor-four-box-vue'
     subprocess.run([sys.executable, str(root / 'scripts/check_prototype.py'), str(prototype)], check=True)
 
 

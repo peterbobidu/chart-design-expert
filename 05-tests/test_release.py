@@ -70,13 +70,28 @@ class ReleaseTests(unittest.TestCase):
 
     def test_unclassified_new_file_is_rejected(self):
         root = self.source_copy()
-        (root / '04-references/new-rule.md').write_text('New rule')
+        (root / '03-references/new-rule.md').write_text('New rule')
         self.assert_build_fails(root, 'unclassified=.*new-rule')
 
     def test_missing_classified_file_is_rejected(self):
         root = self.source_copy()
-        (root / '04-references/data-semantics.md').unlink()
+        (root / '03-references/data-semantics.md').unlink()
         self.assert_build_fails(root, 'missing=.*data-semantics')
+
+    def test_stale_path_in_plain_description_is_rejected(self):
+        root = self.source_copy()
+        legacy = f'{2:02d}-router'
+        with (root / 'README.md').open('a') as handle:
+            handle.write(f'\nRead the {legacy} directory.\n')
+        self.assert_build_fails(root, 'returned non-zero')
+
+    def test_old_numbered_directory_cannot_be_reintroduced(self):
+        root = self.source_copy()
+        (root / f'{2:02d}-router').mkdir()
+        checked = subprocess.run([sys.executable, str(root / 'scripts/check_package.py'), str(root)],
+                                 capture_output=True, text=True)
+        self.assertNotEqual(checked.returncode, 0)
+        self.assertIn('numbered directory layout', checked.stdout + checked.stderr)
 
     def test_symlink_source_is_rejected(self):
         root = self.source_copy()
@@ -120,7 +135,7 @@ class ReleaseTests(unittest.TestCase):
 
     def test_missing_node_script_is_rejected(self):
         root = self.source_copy()
-        path = root / '06-assets/semiconductor-four-box-vue/package.json'
+        path = root / '04-assets/semiconductor-four-box-vue/package.json'
         package = release.read_json(path)
         package['scripts']['verify:broken'] = 'node missing.mjs'
         path.write_bytes(release.json_bytes(package))

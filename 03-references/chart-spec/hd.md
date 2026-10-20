@@ -10,7 +10,7 @@
 | 有图例 | [图例](common/legend.md)：组成、标记、位置、隐藏态与分页 |
 | 折线图 | [折线专项](charts/line.md)：PARTIAL，覆盖用途、信息与部分能力 |
 | 柱状图 | [柱图专项](charts/bar.md)：PARTIAL，来源数值的正式级别部分待确认 |
-| 平行坐标 | 暂无专项文件；沿用[Method 05](../../03-methods/05-multi-object-comparison.md)及通用规则 |
+| 平行坐标 | 暂无专项文件；沿用[Method 05](../../02-methods/05-multi-object-comparison.md)及通用规则 |
 | 饼图 / 环形图 | [饼与环专项](charts/pie.md)：PARTIAL，布局、标签与可选中心信息；不推广到仪表盘/雷达 |
 | 散点、热力、雷达、箱形等 | 暂无独立专项文件；沿用命中方法与通用规则 |
 

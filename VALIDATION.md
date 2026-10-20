@@ -1,5 +1,12 @@
 # v0.6.9 验证记录
 
+## 2026-10-20 目录编号统一 r2
+
+- 将两包的资料目录统一从01开始，维护测试位于05；异常发现短卡采用两位编号前缀。全部包内路径、配置命令和分发清单同步调整；历史条目的包内路径按当前结构展示，原日期和证据范围不变。
+- 已通过：源码及生成包的链接/锚点/13方法路由、目录编号、纯文本路径、清单及脚本检查；21项发布故障/晋级测试（新增旧目录与正文旧路径拦截）。按路径/文件名迁移映射与r1源码逐文件对照，除明确修改的7份发布/说明文件外，其余115份文件均符合纯路径替换，原型代码与视觉数值保持不变。
+- 迁移后的四箱体工程重新执行npm ci、npm test（5项通过）及npm run build，类型检查/生产构建通过；仍有超过500kB的chunk体积警告。
+- 未执行内部Agent六例或浏览器复测，不把路径迁移和自动检查称为业务验收通过。r1及更早ZIP保持不变，r2验收仍从UNVERIFIED开始。
+
 ## 2026-10-20 双包分发 r1
 
 - 基线为本地正式0.6.9完整快照，保留原ZIP和原有未提交检出；新改动位于独立codex分支工作副本。
@@ -21,14 +28,14 @@
 - 新增[HD测试用例](05-tests/hd-069-cases.md)，供独立新对话试跑；现有Method 02测试仍随完整包保留。
 - 本Agent未执行独立新对话生成、目标尺寸浏览器视觉、图例交互/分页和真实导出、内部组件接入；用户试跑反馈见上节，不把未提供的详细证据标为逐项通过。
 - 本次仅修改规则与测试文档；既有原型骨架和半导体规范未改，不将历史骨架运行结果算作本版HD验收。
-- 本地静态检查通过：`python3 scripts/check_package.py`（Markdown链接/锚点及13方法索引路由）；`git diff --check`；Ruby标准库YAML解析入口name/完整description。与分支基线逐字对比，02-router、03-methods、方法详解、半导体规范及06-assets无变化。
+- 本地静态检查通过：`python3 scripts/check_package.py`（Markdown链接/锚点及13方法索引路由）；`git diff --check`；Ruby标准库YAML解析入口name/完整description。与分支基线逐字对比，01-router、02-methods、方法详解、半导体规范及04-assets无变化。
 - skill-creator的Python快速校验器依赖PyYAML，当前维护环境缺该模块，本轮未执行；未为此安装依赖。已使用上述实际YAML解析检查，不将其写成原脚本执行通过。未创建本次PR。
 
 ## 2026-10-13 Method 02 新增（未发布）
 
 - 来源静态核对：0916-C矩阵Sheet1 A3:H3及用户本次交接。四分支/详情联动等新增组织与矩阵原列能力分别说明，不宣称来源已有实现。
 - 包内链接/锚点、13编号索引与路由检查、skill-creator入口检查、git diff --check通过。
-- 临时副本验证：method-02.md被正确识别；同编号另加02-duplicate.md时检查失败（检测到两张短卡）。未改其他方法的命名或状态判据。
+- 临时副本验证：02-anomaly-discovery.md被正确识别；同编号另加02-duplicate.md时检查失败（检测到两张短卡）。未改其他方法的命名或状态判据。
 - 与本次分支基线逐字对比，01/03/04/05/06短卡及分析对象、分析行为定义未变化；SKILL仅补充异常发现的能力描述，无新增流程层级。
 
 ### 01～06路由冲突核对
@@ -94,7 +101,7 @@
 ## v0.6.7｜2026-10-12 交付门槛与骨架
 
 - `scripts/check_package.py` 通过：包内 Markdown 链接、标题锚点和方法路由一致。
-- 将 `06-assets/semiconductor-four-box-vue/` 复制到临时目录并复用同版本本地依赖后，`scripts/check_prototype.py --run` 通过：5 项测试、TypeScript 检查和 Vite 生产构建通过。此项验证的是骨架代码，不是 GLM 重新生成的产物。
+- 将 `04-assets/semiconductor-four-box-vue/` 复制到临时目录并复用同版本本地依赖后，`scripts/check_prototype.py --run` 通过：5 项测试、TypeScript 检查和 Vite 生产构建通过。此项验证的是骨架代码，不是 GLM 重新生成的产物。
 - 用单 HTML 文件调用 `check_prototype.py` 返回失败，能拦截默认 Vue 路径只交付 HTML 的情形。
 - `quick_validate.py` 未运行完成：当前 Python 缺少 PyYAML（`ModuleNotFoundError: yaml`）。入口 frontmatter 保持原字段，包内检查已通过；该项仍标未验证。
 - 本版未在 GLM V5.1 独立上下文执行回归，也未重新进行 640px/420px 浏览器检查或内部组件集成。产物视觉与模型稳定性不能据此判定通过。

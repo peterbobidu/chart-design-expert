@@ -5,7 +5,7 @@
 
 ## 先读实物，再实现
 
-原始资产：[semiconductor_yield_dashboard.html](../../../06-assets/method-03/semiconductor_yield_dashboard.html)。这是用户提供的参考，不是已验证的生产工具。生成快照参考分支或复用其算法时读取完整文件，并结合[窗口交互](snapshot-detail.md)与[图形规则](semiconductor-responsive.md)。复用交互结构和可解释算法，按当前目标技术栈实现：默认Vue/ECharts需实现为Vue组件与ECharts图形，不能直接把React/D3依赖带入并声称符合默认交付。
+原始资产：[semiconductor_yield_dashboard.html](../../../04-assets/method-03/semiconductor_yield_dashboard.html)。这是用户提供的参考，不是已验证的生产工具。生成快照参考分支或复用其算法时读取完整文件，并结合[窗口交互](snapshot-detail.md)与[图形规则](semiconductor-responsive.md)。复用交互结构和可解释算法，按当前目标技术栈实现：默认Vue/ECharts需实现为Vue组件与ECharts图形，不能直接把React/D3依赖带入并声称符合默认交付。
 
 文件依赖Tailwind CDN、React18/ReactDOM、Babel standalone、D3v7；依赖可用时才能打开运行，不声称离线单文件无依赖。演示数据在模块初始化时随机产生，同一次页面中共享；重载会变。生成可比较的验收原型时建议固定seed或内嵌固定样本，并注明示例数据，拖动时不重新造数据。
 

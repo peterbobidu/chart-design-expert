@@ -1,5 +1,11 @@
 # 双包发布标准
 
+## 目录编号
+
+两包共享 `01-router`、`02-methods`、`03-references`、`04-assets`，维护包再加 `05-tests`，因此各自的一级资料目录都从01连续排列。方法卡按两位业务编号开头命名，例如异常发现为 `02-methods/02-anomaly-discovery.md`；目录序号不改动Method 01–13的含义。脚本、入口和其他根文件沿用其用途名称。
+
+更名时先修改维护源码，再同步所有链接、纯文本路径、工程/CI命令和分发清单，最后构建双包。包检查会拒绝过期编号的目录及文字引用；不允许在打包时为两包分别重命名。
+
 ## 两种包，一份运行源码
 
 维护完整包用于修改、回归和排查，包含完整源码及维护工具。运行安装包用于内部 Agent 测试和最终上架。两者均以 `chart-design-advisor/` 为根目录，不是两套独立 Skill；日常环境安装 runtime 包，维护包作为源码资料使用。
@@ -8,11 +14,11 @@
 
 运行规则、案例、规范、必要资产、原型检查脚本和运行验收留在 runtime。PR/CI 配置、维护用例、历史记录和发布工具仅在维护包。保留规范整理功能、旧编号兼容和历史 HTML 参考；本次不改变这些功能范围。`description.md` 保留以兼容未确认的宿主导入规则。
 
-打包只选文件，不做正文替换、裁剪或模板渲染。修改运行文案应先修改源码并验证。共有运行文件必须逐字节相同；运行包内链接不能指向维护资料。评价规则的唯一正文在 `04-references/prototype/evaluation-status.md`，测试目录仅保留兼容入口。
+打包只选文件，不做正文替换、裁剪或模板渲染。修改运行文案应先修改源码并验证。共有运行文件必须逐字节相同；运行包内链接不能指向维护资料。评价规则的唯一正文在 `03-references/prototype/evaluation-status.md`，测试目录仅保留兼容入口。
 
 ## 版本与产物
 
-`skill_version` 与 SKILL.md 一致。`distribution_revision` 表示同一 Skill 版本下的分发修订，例如 `0.6.9-r1`；文件名明确标识 revision，不覆盖此前的 0.6.9 ZIP。每次变更候选内容都提高 revision；方法/设计行为变更按项目版本策略提高 Skill 版本。
+`skill_version` 与 SKILL.md 一致。`distribution_revision` 表示同一 Skill 版本下的分发修订，例如 `0.6.9-r2`；文件名明确标识 revision，不覆盖此前的 0.6.9 ZIP。每次变更候选内容都提高 revision；方法/设计行为变更按项目版本策略提高 Skill 版本。
 
 构建目录含两个 ZIP、`release-record.json`、`SHA256SUMS` 和 `acceptance-template.json`。记录包括所有源码文件的 SHA-256、大小、两个 ZIP 的 SHA-256 和文件数。ZIP 条目顺序、权限及时间固定，相同内容输入重复构建得到相同字节。输出目录必须在源码外且尚不存在，避免覆盖测试产物。
 
@@ -23,8 +29,8 @@
 ```bash
 python3 scripts/check_package.py
 python3 -m unittest discover -s 05-tests -p 'test_release.py'
-python3 scripts/release.py build --out ../candidate-0.6.9-r1
-python3 scripts/release.py verify --bundle ../candidate-0.6.9-r1
+python3 scripts/release.py build --out ../candidate-0.6.9-r2
+python3 scripts/release.py verify --bundle ../candidate-0.6.9-r2
 ```
 
 构建会检查源码、运行包的链接/锚点/路由、入口版本、锁文件顶层依赖和 Node 脚本文件引用；核对四箱体结构。`verify` 还检查 ZIP CRC、文件清单、逐文件哈希、两包共有运行内容及完整产物校验值。解包检查在临时目录进行，维护检查工具不进入 runtime。
@@ -48,7 +54,7 @@ python3 scripts/release.py verify --bundle ../candidate-0.6.9-r1
 ## 原包晋级
 
 ```bash
-python3 scripts/release.py promote --bundle ../candidate-0.6.9-r1 --acceptance ../candidate-0.6.9-r1/acceptance.json --out ../publish-0.6.9-r1
+python3 scripts/release.py promote --bundle ../candidate-0.6.9-r2 --acceptance ../candidate-0.6.9-r2/acceptance.json --out ../publish-0.6.9-r2
 ```
 
 晋级重新检查候选，要求验收绑定同一个 ZIP、六例覆盖且全部 PASS、审核人/时间/环境完整、证据存在且哈希匹配；随后原字节复制 runtime ZIP，不解包重打。发布目录附验收记录、对应证据文件及校验值。使用该 ZIP 通过内部平台上架；本脚本不会上传或修改线上 Skill。

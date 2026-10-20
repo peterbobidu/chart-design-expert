@@ -14,4 +14,4 @@
 
 单纯走势用01；指标关系和原因诊断用04；独立对象优劣比较用05。事件先后不证明因果。
 
-执行回溯设计时读[详解](../04-references/methods/06/detail.md)；需要案例读[案例](../04-references/methods/06/examples.md)，验收读[评价](../04-references/methods/06/evaluation.md)。
+执行回溯设计时读[详解](../03-references/methods/06/detail.md)；需要案例读[案例](../03-references/methods/06/examples.md)，验收读[评价](../03-references/methods/06/evaluation.md)。

@@ -6,7 +6,7 @@
 | --- | --- |
 | 普通卡片/容器尺寸适配 | 按实际宿主宽高调整布局、字号及元素显隐，保留单位与关键信息；遵守通用规范，不加载浮窗HTML，不自动采用500/430 |
 | 散点/拟合切换或点大小、透明度、边框调节 | 提供当前图表适用的轻量控件，显式参数优先于自动默认；恢复样式仅清除样式覆盖，不改变源数据。拟合须明确回归还是密度，依数据语义实现，不把密度短条称回归 |
-| 参考原11、右键快照、窗口缩放、同尺寸原貌 | 读[快照交互](snapshot-detail.md)、[响应式规则](semiconductor-responsive.md)；生成该分支原型再必读[演示对照](reference-demo.md)与[完整HTML](../../../06-assets/method-03/semiconductor_yield_dashboard.html) |
+| 参考原11、右键快照、窗口缩放、同尺寸原貌 | 读[快照交互](snapshot-detail.md)、[响应式规则](semiconductor-responsive.md)；生成该分支原型再必读[演示对照](reference-demo.md)与[完整HTML](../../../04-assets/method-03/semiconductor_yield_dashboard.html) |
 | 只需报告静态小图/图片输出 | 明确最终图尺寸与必要信息，按需组合03-2/3/4；不因报告一词强加完整快照工具。实际导出要求及倍率语义见[快照交互第6节](snapshot-detail.md#6-实际图片输出明确请求时实现)，只读相关部分即可 |
 
 ## 快照范围
