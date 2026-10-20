@@ -1,19 +1,23 @@
-# chart-design-advisor v0.6.8
+# 图表设计顾问 · 0.6.9
 
-## 仓库维护
+帮助 B 端设计师按分析目标选择图表与交互方案，支持异常发现、趋势观察、有限空间表达、指标关系、多对象比较和事件回顾。可以只给设计建议，也可以生成交互原型。
 
-本仓库根目录就是可安装的 `chart-design-advisor` skill。`main` 保存已合入版本；修改时从 `main` 创建 `codex/` 分支，更新相关文档与验证记录，运行检查后提交 PR。PR 合入后再将仓库 `main` 同步到本机 `~/.codex/skills/chart-design-advisor`。操作步骤与当前 GitHub 权限限制见 [CONTRIBUTING.md](CONTRIBUTING.md)；Agent 约定见 [AGENTS.md](AGENTS.md)，自动检查见 [Validate skill](.github/workflows/validate.yml)。
+## 怎么提问
 
-本版在v0.6.7基础上增加既有工程与编译交付管道适配，保留设计规范、四箱体骨架和独立工程验证路径。运行入口是[SKILL.md](SKILL.md)，方法状态由[索引](03-methods/index.md)维护。
+说明你想判断什么、分析对象和指标、可用数据、展示尺寸，以及需要方案还是原型。没有真实数据时，可以使用明确标记的示例数据。
 
-交互原型优先接入既有工程；无承载工程时默认生成Vue 3 + TypeScript + ECharts组件及Vite预览工程，遵从用户指定的其他技术栈。原型工程随附[HANDOFF.md交接说明](04-references/prototype/handoff.md)。ECharts无法实现、需要其他技术配合或尚无法确认的能力，按[告知规则](04-references/prototype/echarts-capabilities.md)说明原因、建议与交付影响。
+- “从几百台设备里找到需要关注的对象，沿用已有告警等级。”
+- “在452px卡片里展示当前温度和近期趋势，只给设计方案。”
+- “比较六个模型的延迟、吞吐和成本，生成交互原型，不做综合评分。”
 
-维护者在已配置Python的维护机上执行 `python3 scripts/check_package.py`（生成原型时不需要，不为此安装Python或Command Line Tools）；验证范围见[VALIDATION.md](VALIDATION.md)，用例与历史分别见[测试索引](05-tests/README.md)、[CHANGELOG](CHANGELOG.md)。已编写方法、代码中有实现和真实运行通过是不同状态。
+## 会得到什么
 
-半导体规范以用户提供文档的整理版接入，待核对项和缺失依赖随包记录；其他原始规范资产、六领域内部组件API未随包提供；不虚构业务接入或负责人。历史HTML保留原字节，其框架和旧视觉参数不覆盖当前交付要求，外部CDN依赖不代表离线可运行。
+设计建议说明判断目标、图表方案、关键交互及数据缺口。需要原型时，已有项目沿用其工程和交付管道；没有项目时，默认交付 Vue 3 + TypeScript + ECharts + Vite 工程，预览与交付使用同一实现。明确指定其他技术栈或单文件 HTML 时遵从请求。工程包含对应的交接说明。
 
-本版支持既有Vue工程与统一编译交付管道；见[承载工程规则](04-references/prototype/hosted-project.md)。Vite与check_prototype.py仅为无承载工程时的独立默认路径。内网脚手架及管道脚本不随本包分发，未声明已完成内网运行验证。
+规范由用户指定优先；未指定时，明确半导体项目采用半导体规则，其余采用 HD。未定义部分标为本次设计建议，不冒充正式规范。
 
-接入chart-vue-creator时，同步其design目录中的本版引用文档，并更新其入口对交付规则的引用；将“验证与限制只写verify结果”调整为“编译以verify为据，其他验证与限制分别记录”。本包不修改外部creator的脚本或固定工程约定。
+## 当前范围
 
-Method 02已补充[异常发现短卡](03-methods/method-02.md)：等级表达、对象筛选、多维定位与详情联动；来源和验证边界见方法引用及VALIDATION。既有方法正文与四层架构保持不变，新方法的独立任务/原型验证仍待执行。
+已编写六类方法，其余七类只有任务摘要和回退建议，见[方法索引](03-methods/index.md)。内部组件、Token 资产及业务接口未随包提供；不能据通用原型推定已经业务接入。数据阈值和评分模型须有业务依据；实际运行、视觉、导出和业务接入分别说明验证范围。
+
+Agent 从[SKILL.md](SKILL.md)开始按需读取；设计师无需逐份阅读规则或安装维护检查工具。原始参考 HTML 含外部 CDN 依赖，不代表离线可运行。

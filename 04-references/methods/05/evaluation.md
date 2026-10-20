@@ -1,6 +1,6 @@
 # Method 05｜验收
 
-执行状态和质量结论见[评价规则](../../../05-tests/evaluation-rubric.md)；具体输入见[05用例](../../../05-tests/method-05-cases.md)。
+执行状态和质量结论见[评价规则](../../prototype/evaluation-status.md)。
 
 | 范围 | 通过条件 |
 | --- | --- |

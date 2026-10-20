@@ -5,7 +5,7 @@ description: 面向 B 端数据分析的图表设计顾问，用于异常对象�
 
 # Chart Design Advisor
 
-版本：0.6.8。输出可执行的设计建议；需要原型时，预览与交付使用同一份图表实现。
+版本：0.6.9。输出可执行的设计建议；需要原型时，预览与交付使用同一份图表实现。
 
 ## 核心规则
 
@@ -38,6 +38,5 @@ description: 面向 B 端数据分析的图表设计顾问，用于异常对象�
 | 明确要求单文件或离线 HTML | [HTML 交付](04-references/prototype/html-prototype.md) |
 | 平滑、聚合、拟合、采样、归一化、排名或评分 | [数据语义](04-references/data-semantics.md)中与处理相符的部分 |
 | 单项规范咨询 / 整理新增规范 | 分别通过[规范索引](04-references/chart-spec/index.md)读取相关文件 / [规范结构](04-references/chart-spec/schema.md) |
-| 维护、评测或发布 | [测试索引](05-tests/README.md)、[验证记录](VALIDATION.md)；不作为日常生成前置读取 |
 
 方法分支、案例和历史兼容由对应短卡维护。仅半导体快照参考复现或复用其算法时按 Method 03 读取源 HTML；普通概览不加载该资产。版本历史不参与当前规则裁决。

@@ -49,4 +49,4 @@
 
 ## 尚未覆盖
 
-Hover/Selected/Highlight详细样式，多系列和图例拥挤处理，响应断点，小尺寸柱宽/标签取舍，双Y轴适用边界及内部Token映射。按当前任务补充并标明设计建议。
+Hover/Selected/Highlight图形详细样式，多系列密度处理，响应断点，小尺寸柱宽/标签取舍，双Y轴适用边界及内部Token映射。图例拥挤与隐藏态已有[规则](../common/legend.md)，Mini信息压缩见[布局](../common/layout.md)；其他缺口按当前任务补充并标明设计建议。

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Check local Markdown links/anchors and method-index/router consistency."""
 from collections import Counter
+import json
 from pathlib import Path
 import re
 import sys
@@ -43,10 +44,37 @@ for document in ROOT.rglob('*.md'):
             target, _, fragment = unquote(raw).partition('#')
             destination = (document.parent / target).resolve() if target else document
             prefix = f'{document.relative_to(ROOT)}:{number}'
-            if not destination.exists():
+            if not destination.is_relative_to(ROOT):
+                errors.append(f'{prefix}: link escapes package: {raw}')
+            elif not destination.exists():
                 errors.append(f'{prefix}: missing {raw}')
             elif fragment and destination.suffix == '.md' and fragment not in anchors(destination):
                 errors.append(f'{prefix}: missing heading {raw}')
+
+skill = (ROOT / 'SKILL.md').read_text(encoding='utf-8')
+header = re.match(r'\A---\n(.*?)\n---\n', skill, re.DOTALL)
+if not header or not re.search(r'^name: chart-design-advisor$', header[1], re.MULTILINE) or not re.search(r'^description: .+', header[1], re.MULTILINE):
+    errors.append('SKILL.md: invalid or missing skill name/description frontmatter')
+policy_file = ROOT / 'release.json'
+if policy_file.is_file():
+    policy = json.loads(policy_file.read_text(encoding='utf-8'))
+    if f'版本：{policy["skill_version"]}。' not in skill:
+        errors.append('SKILL.md: release policy version does not match entrypoint')
+
+for package_path in ROOT.rglob('package.json'):
+    if any(part in {'node_modules', 'dist'} for part in package_path.relative_to(ROOT).parts):
+        continue
+    package = json.loads(package_path.read_text(encoding='utf-8'))
+    lock_path = package_path.with_name('package-lock.json')
+    if lock_path.is_file():
+        lock = json.loads(lock_path.read_text(encoding='utf-8'))['packages']['']
+        for key in ('dependencies', 'devDependencies'):
+            if lock.get(key, {}) != package.get(key, {}):
+                errors.append(f'{package_path.relative_to(ROOT)}: lockfile {key} mismatch')
+    for name, command in package.get('scripts', {}).items():
+        for script in re.findall(r'(?:^|\s|&&)node\s+([\w./-]+\.(?:mjs|cjs|js))\b', command):
+            if not (package_path.parent / script).is_file():
+                errors.append(f'{package_path.relative_to(ROOT)}: script {name} points to missing {script}')
 
 index = (ROOT / '03-methods/index.md').read_text(encoding='utf-8')
 route = (ROOT / '02-router/route-map.md').read_text(encoding='utf-8')
@@ -76,4 +104,4 @@ for message in errors:
     print(message)
 if errors:
     raise SystemExit(f'FAIL: {len(errors)} issue(s)')
-print('PASS: Markdown targets/headings and 13 method-index/router entries')
+print('PASS: contained Markdown targets/headings, frontmatter, 13 routes and package script/lock references')

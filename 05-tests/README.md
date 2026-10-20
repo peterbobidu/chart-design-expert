@@ -5,8 +5,9 @@
 | 范围 | 入口 |
 | --- | --- |
 | 总体判定 | [评价规则](evaluation-rubric.md) |
+| 双包发布与上架 | [内部验收六例](release-acceptance.md)、`test_release.py` 自动化故障检查；流程见[发布标准](../RELEASING.md) |
 | 路由与编号 | [R01–R27](router-cases.md)、[对象/行为映射](router/analysis-object-behavior-cases.md)、[旧11兼容入口](legacy-method-11-cases.md) |
-| 图表规范 | [规范用例](chart-spec-cases.md)、[领域选择](domain-spec-cases.md) |
+| 图表规范 | [规范用例](chart-spec-cases.md)、[领域选择](domain-spec-cases.md)、[HD 0.6.9试跑](hd-069-cases.md) |
 | Method 01 | [趋势评价](../04-references/methods/01/evaluation.md) |
 | Method 02 | [路由与语义用例](method-02-cases.md)、[评价](../04-references/methods/02/evaluation.md) |
 | Method 03 | [分支用例](method-03-cases.md)、[总体验收](../04-references/methods/03/evaluation.md) |
