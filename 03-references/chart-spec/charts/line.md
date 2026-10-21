@@ -27,11 +27,11 @@
 
 - 根据数据识别需要配置图例；已有组件图例直接复用。身份由直接标签表达清楚时可不额外添加图例。位置见[布局](../common/layout.md)，标记/文字见[视觉基础](../common/visual-basics.md)。
 - 对象身份及原始/处理曲线配色见[颜色](../common/color.md)。
-- 缺失与变换见[数据语义](../../data-semantics.md)；Hover生命周期见[生成与验收](../../prototype/generation-review.md)，框选反馈、取消和恢复见[Method 01](../../methods/01/detail.md)。
+- 缺失与变换见[数据语义](../../data-semantics.md)；桌面Hover的视觉、布局及生命周期见[通用Tooltip组件](../components/tooltip.md)，框选反馈、取消和恢复见[Method 01](../../methods/01/detail.md)。
 - 仅半导体小尺寸/快照场景按[响应式专项](../../methods/03/semiconductor-responsive.md)改变点标记；这与数据平滑不同，不作为普通折线默认行为。
 
 ## 尚未覆盖
 
-全局默认线宽、图内点大小/显隐、虚线用途、多线层级、垂直网格；缺失段标记、大数据降采样专项策略；Tooltip视觉参数和Select/Highlight图形详细样式；普通折线响应断点与密度策略。刻度小标记见[坐标轴](../common/axis.md)，图例隐藏/分页见[图例](../common/legend.md)。已有公共网格、数据语义和方法交互规则继续适用。
+全局默认线宽、图内点大小/显隐、虚线用途、多线层级、垂直网格；缺失段标记、大数据降采样专项策略；Select/Highlight图形详细样式；普通折线响应断点与密度策略。刻度小标记见[坐标轴](../common/axis.md)，图例隐藏/分页见[图例](../common/legend.md)。已有公共网格、数据语义和方法交互规则继续适用。
 
 已确认设备温度场景的2px实线要求仅适用于[Method 01记录的该场景](../../methods/01/detail.md)，不据此声明全局线型已定义。

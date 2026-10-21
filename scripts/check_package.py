@@ -124,8 +124,19 @@ for method_id in range(1, 14):
     elif candidates:
         errors.append(f'Method {key}: pending state conflicts with existing short card')
 
+# Use the maintenance checker beside this script even when checking an extracted runtime tree.
+import importlib.util
+consistency_path = Path(__file__).with_name('check_consistency.py')
+if not consistency_path.is_file():
+    errors.append('missing maintenance documentation consistency checker')
+else:
+    spec = importlib.util.spec_from_file_location('chart_consistency', consistency_path)
+    consistency = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(consistency)
+    errors.extend(consistency.check(ROOT))
+
 for message in errors:
     print(message)
 if errors:
     raise SystemExit(f'FAIL: {len(errors)} issue(s)')
-print('PASS: contained Markdown targets/headings, frontmatter, 13 routes and package script/lock references')
+print('PASS: contained Markdown targets/headings, frontmatter, 13 routes, package script/lock references and registered consistency rules')

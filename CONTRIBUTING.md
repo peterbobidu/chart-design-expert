@@ -14,6 +14,7 @@ git pull --ff-only
 git switch -c codex/short-description
 # 修改文件后
 python3 scripts/check_package.py
+python3 -m unittest discover -s 05-tests -p 'test_*.py'
 # 若修改了 04-assets/semiconductor-four-box-vue：在该目录运行 npm ci、npm test、npm run build
 git add -A
 git commit -m "说明本次变更"

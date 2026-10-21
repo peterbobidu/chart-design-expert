@@ -70,7 +70,8 @@ def validate_policy(policy):
     require('release.json' in maintenance and 'scripts/check_package.py' in maintenance,
             'maintenance package must include release policy and package checker')
     require(not any(p.startswith(('05-tests/', '.github/', '.githooks/')) or
-                    p in {'AGENTS.md', 'CONTRIBUTING.md', 'CHANGELOG.md', 'VALIDATION.md', 'release.json'}
+                    p in {'AGENTS.md', 'CONTRIBUTING.md', 'CHANGELOG.md', 'VALIDATION.md', 'release.json',
+                          '03-references/prototype/evaluation-status.md'}
                     for p in runtime), 'maintenance material in runtime inventory')
     cases = policy['acceptance_cases']
     require(cases and len({c['id'] for c in cases}) == len(cases), 'invalid acceptance cases')

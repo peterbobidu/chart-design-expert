@@ -12,13 +12,13 @@
 
 `release.json` 是分发清单。每个源码文件必须且只能归入 `runtime_files` 或 `maintenance_only_files`；新增、删除、重命名文件后须更新清单。未分类文件使构建失败。`.git`、依赖/构建/缓存目录及明确的系统缓存文件不参与分发，ZIP 等其他文件不会被静默忽略。
 
-运行规则、案例、规范、必要资产、原型检查脚本和运行验收留在 runtime。PR/CI 配置、维护用例、历史记录和发布工具仅在维护包。保留规范整理功能、旧编号兼容和历史 HTML 参考；本次不改变这些功能范围。`description.md` 保留以兼容未确认的宿主导入规则。
+运行规则、案例、规范、必要资产、原型检查脚本留在 runtime；具体原型的交付检查仍保留，Skill测试评价、验证状态与历史证据不进入runtime。PR/CI 配置、维护用例、历史记录和发布工具仅在维护包。保留规范整理功能、旧编号兼容和历史 HTML 参考；本次不改变这些功能范围。`description.md` 保留以兼容未确认的宿主导入规则。
 
-打包只选文件，不做正文替换、裁剪或模板渲染。修改运行文案应先修改源码并验证。共有运行文件必须逐字节相同；运行包内链接不能指向维护资料。评价规则的唯一正文在 `03-references/prototype/evaluation-status.md`，测试目录仅保留兼容入口。
+打包只选文件，不做正文替换、裁剪或模板渲染。修改运行文案应先修改源码并验证。共有运行文件必须逐字节相同；运行包内链接不能指向维护资料。Skill维护测试的评价规则统一在 `05-tests/evaluation-rubric.md`，不在运行资料中放置测试结果或验证状态入口。
 
 ## 版本与产物
 
-`skill_version` 与 SKILL.md 一致。`distribution_revision` 表示同一 Skill 版本下的分发修订，例如 `0.6.9-r2`；文件名明确标识 revision，不覆盖此前的 0.6.9 ZIP。每次变更候选内容都提高 revision；方法/设计行为变更按项目版本策略提高 Skill 版本。
+`skill_version` 与 SKILL.md 一致。`distribution_revision` 表示同一 Skill 版本下的分发修订，例如 `0.6.9-r7`；文件名明确标识 revision，不覆盖此前的 0.6.9 ZIP。每次变更候选内容都提高 revision；方法/设计行为变更按项目版本策略提高 Skill 版本。
 
 构建目录含两个 ZIP、`release-record.json`、`SHA256SUMS` 和 `acceptance-template.json`。记录包括所有源码文件的 SHA-256、大小、两个 ZIP 的 SHA-256 和文件数。ZIP 条目顺序、权限及时间固定，相同内容输入重复构建得到相同字节。输出目录必须在源码外且尚不存在，避免覆盖测试产物。
 
@@ -28,9 +28,9 @@
 
 ```bash
 python3 scripts/check_package.py
-python3 -m unittest discover -s 05-tests -p 'test_release.py'
-python3 scripts/release.py build --out ../candidate-0.6.9-r2
-python3 scripts/release.py verify --bundle ../candidate-0.6.9-r2
+python3 -m unittest discover -s 05-tests -p 'test_*.py'
+python3 scripts/release.py build --out ../candidate-0.6.9-r7
+python3 scripts/release.py verify --bundle ../candidate-0.6.9-r7
 ```
 
 构建会检查源码、运行包的链接/锚点/路由、入口版本、锁文件顶层依赖和 Node 脚本文件引用；核对四箱体结构。`verify` 还检查 ZIP CRC、文件清单、逐文件哈希、两包共有运行内容及完整产物校验值。解包检查在临时目录进行，维护检查工具不进入 runtime。
@@ -54,7 +54,7 @@ python3 scripts/release.py verify --bundle ../candidate-0.6.9-r2
 ## 原包晋级
 
 ```bash
-python3 scripts/release.py promote --bundle ../candidate-0.6.9-r2 --acceptance ../candidate-0.6.9-r2/acceptance.json --out ../publish-0.6.9-r2
+python3 scripts/release.py promote --bundle ../candidate-0.6.9-r7 --acceptance ../candidate-0.6.9-r7/acceptance.json --out ../publish-0.6.9-r7
 ```
 
 晋级重新检查候选，要求验收绑定同一个 ZIP、六例覆盖且全部 PASS、审核人/时间/环境完整、证据存在且哈希匹配；随后原字节复制 runtime ZIP，不解包重打。发布目录附验收记录、对应证据文件及校验值。使用该 ZIP 通过内部平台上架；本脚本不会上传或修改线上 Skill。
@@ -64,3 +64,17 @@ python3 scripts/release.py promote --bundle ../candidate-0.6.9-r2 --acceptance .
 ## 维护约定
 
 规则、分发清单、验收范围及发布脚本都通过 `codex/` 分支与 PR 修改。源码仓库保留完整测试与历史，不直接编辑安装副本。当前 revision 的验证范围见 VALIDATION.md；内部验收未完成前只交付候选包，不标记正式发布。
+
+## 打包前文档一致性复核
+
+`check_package.py`会调用维护端`check_consistency.py`，在源码和解压runtime上拦截已登记的过期覆盖声明、历史版本误作下一次运行目标、宿主交付范围冲突及方法数量不一致。维护单测用故障注入验证能拦截问题，也保留历史记录和合法未定义子属性的正向用例。检查器与单测仅进维护包，不增加设计师运行依赖。
+
+每次修改规范/能力后，维护者还需比较其权威正文与所有引用、缺口声明、测试预期及案例覆盖：先确认领域、媒介、作用元素和历史时点，再判断是否冲突。不能把Tooltip卡内8px点与半导体图外10px图例、案例2px实线与未定义的全局线宽、来源HTML未实现与新原型可扩展混为同一范围。历史记录保留当时事实，必要时注释当前入口，不篡改为本次验证通过。
+
+需要全量复核台账时，在已有维护环境执行：
+
+```bash
+python3 scripts/check_consistency.py --inventory /path/outside-source/markdown-review.json
+```
+
+输出覆盖所有Markdown文件，按运行/维护/模板/历史分类，并列出默认、未定义、待实现等声明供人工逐项对照。关键声明只维护在权威正文；新增能力时检索旧的“暂无/未覆盖”描述，先修源码再生成双包。扫描结果没有报错只表示登记规则未命中，不等于自然语言语义已被自动证明正确；内部Agent、视觉和交互验收继续按实际风险执行。

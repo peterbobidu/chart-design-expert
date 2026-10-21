@@ -97,6 +97,8 @@ Y缩放轨道为胶囊圆角，背景`--color-bg-1`；选区#2070F3、15%透明�
 
 Tooltip、放大弹窗和关闭行为按当前任务与配置档启用；空/错/载状态必须可辨，禁止伪造数据填补。内部DOM宿主、Bridge和runtime协议见[实现与接入](integration.md)。
 
+桌面Hover提示的卡内视觉、内容与行为读取用户明确指定的[通用Tooltip组件](../components/tooltip.md)；卡内8px圆点不覆盖本领域图外10px图例，内部宿主协议继续遵从接入文件。
+
 ### 数据入场
 
 数据入场时长150ms（`--chart-data-enter-duration` = `--transition-normal`），缓动ease（`--chart-data-enter-easing` = `--transition-timing-default`）；不自行改成200/300/400ms。`prefers-reduced-motion:reduce`时时长为0s。

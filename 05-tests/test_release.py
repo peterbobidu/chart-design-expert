@@ -114,6 +114,12 @@ class ReleaseTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'required runtime'):
             release.validate_policy(policy)
 
+    def test_skill_evaluation_status_cannot_enter_runtime(self):
+        policy = copy.deepcopy(self.policy)
+        policy['runtime_files'].append('03-references/prototype/evaluation-status.md')
+        with self.assertRaisesRegex(ValueError, 'maintenance material'):
+            release.validate_policy(policy)
+
     def test_policy_cannot_silently_remove_acceptance_cases(self):
         policy = copy.deepcopy(self.policy)
         policy['acceptance_cases'].pop()
