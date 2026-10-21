@@ -1,6 +1,6 @@
 ---
 name: chart-design-advisor
-description: 面向 B 端数据分析的图表设计顾问，用于趋势、关联、多对象比较、事件回溯、有限空间表达和报告截图设计。按任务选择方法与适用规范；交互原型交付 Vue 3 + TypeScript + ECharts 组件，优先接入既有工程与管道；无承载工程时默认 Vite 预览工程。
+description: 面向 B 端数据分析的图表设计顾问，用于异常对象发现、趋势、关联、多对象比较、事件回溯、有限空间表达和报告截图设计。按任务选择方法与适用规范；交互原型交付 Vue 3 + TypeScript + ECharts 组件，优先接入既有工程与管道；无承载工程时默认 Vite 预览工程。
 ---
 
 # Chart Design Advisor

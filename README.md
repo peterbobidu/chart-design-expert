@@ -15,3 +15,5 @@
 本版支持既有Vue工程与统一编译交付管道；见[承载工程规则](04-references/prototype/hosted-project.md)。Vite与check_prototype.py仅为无承载工程时的独立默认路径。内网脚手架及管道脚本不随本包分发，未声明已完成内网运行验证。
 
 接入chart-vue-creator时，同步其design目录中的本版引用文档，并更新其入口对交付规则的引用；将“验证与限制只写verify结果”调整为“编译以verify为据，其他验证与限制分别记录”。本包不修改外部creator的脚本或固定工程约定。
+
+Method 02已补充[异常发现短卡](03-methods/method-02.md)：等级表达、对象筛选、多维定位与详情联动；来源和验证边界见方法引用及VALIDATION。既有方法正文与四层架构保持不变，新方法的独立任务/原型验证仍待执行。

@@ -59,6 +59,9 @@ for method_id in range(1, 14):
         continue
     state = index_rows[0].split('|')[3].strip()
     candidates = list((ROOT / '03-methods').glob(f'{key}-*.md'))
+    named_card = ROOT / '03-methods' / f'method-{key}.md'
+    if named_card.is_file():
+        candidates.append(named_card)
     if state not in ('已编写', '待实现'):
         errors.append(f'Method {key}: unknown state {state}')
     elif state == '已编写':

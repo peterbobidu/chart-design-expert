@@ -27,6 +27,6 @@ Expected: Event + Event Reconstruction -> Method 06；不能仅因Event走04。
 
 ## Case 05
 Input: 按已有告警规则列出所有异常设备，没有空间约束。
-Expected: State + Monitoring/异常筛选 -> Method 02并按当前状态回退；不能仅因State走03。
+Expected: State + Monitoring/异常筛选 -> Method 02并读取短卡及所需详解；不能仅因State走03。
 
 以上均为待执行预期，非本次运行通过记录。
