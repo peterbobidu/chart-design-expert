@@ -10,6 +10,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('skill_release', ROOT / 'scripts/release.py')
@@ -113,6 +114,21 @@ class ReleaseTests(unittest.TestCase):
         policy['maintenance_only_files'].append('SKILL.md')
         with self.assertRaisesRegex(ValueError, 'required runtime'):
             release.validate_policy(policy)
+
+    def test_changelog_cannot_be_reclassified_as_maintenance_only(self):
+        policy = copy.deepcopy(self.policy)
+        policy['runtime_files'].remove('CHANGELOG.md')
+        policy['required_runtime_files'].remove('CHANGELOG.md')
+        policy['maintenance_only_files'].append('CHANGELOG.md')
+        with self.assertRaisesRegex(ValueError, 'CHANGELOG.md must be a required runtime file'):
+            release.validate_policy(policy)
+
+    def test_both_bundles_include_identical_changelog(self):
+        record = release.read_json(self.bundle / 'release-record.json')
+        for kind in ['maintainer', 'runtime']:
+            with zipfile.ZipFile(self.bundle / record['artifacts'][kind]['filename']) as archive:
+                self.assertEqual(archive.read('chart-design-advisor/CHANGELOG.md'),
+                                 self.source_files['CHANGELOG.md'])
 
     def test_skill_evaluation_status_cannot_enter_runtime(self):
         policy = copy.deepcopy(self.policy)

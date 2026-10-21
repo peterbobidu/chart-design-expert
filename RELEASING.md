@@ -12,13 +12,13 @@
 
 `release.json` 是分发清单。每个源码文件必须且只能归入 `runtime_files` 或 `maintenance_only_files`；新增、删除、重命名文件后须更新清单。未分类文件使构建失败。`.git`、依赖/构建/缓存目录及明确的系统缓存文件不参与分发，ZIP 等其他文件不会被静默忽略。
 
-运行规则、案例、规范、必要资产、原型检查脚本留在 runtime；具体原型的交付检查仍保留，Skill测试评价、验证状态与历史证据不进入runtime。PR/CI 配置、维护用例、历史记录和发布工具仅在维护包。保留规范整理功能、旧编号兼容和历史 HTML 参考；本次不改变这些功能范围。`description.md` 保留以兼容未确认的宿主导入规则。
+运行规则、案例、规范、必要资产、原型检查脚本留在 runtime；`CHANGELOG.md`为两包共有的必带版本变更记录，同一份正文逐字节一致，不作为设计师生成前的必读资料。具体原型的交付检查仍保留；测试报告、详细验证记录、PR/CI配置、维护用例和发布工具仅在维护包。保留规范整理功能、旧编号兼容和历史HTML参考；`description.md`保留以兼容未确认的宿主导入规则。
 
 打包只选文件，不做正文替换、裁剪或模板渲染。修改运行文案应先修改源码并验证。共有运行文件必须逐字节相同；运行包内链接不能指向维护资料。Skill维护测试的评价规则统一在 `05-tests/evaluation-rubric.md`，不在运行资料中放置测试结果或验证状态入口。
 
 ## 版本与产物
 
-`skill_version` 与 SKILL.md 一致。`distribution_revision` 表示同一 Skill 版本下的分发修订，例如 `0.6.9-r7`；文件名明确标识 revision，不覆盖此前的 0.6.9 ZIP。每次变更候选内容都提高 revision；方法/设计行为变更按项目版本策略提高 Skill 版本。
+`skill_version` 与 SKILL.md 一致。`distribution_revision` 表示同一 Skill 版本下的分发修订，例如 `0.6.9-r8`；文件名明确标识 revision，不覆盖此前的 0.6.9 ZIP。每次变更候选内容都提高 revision；方法/设计行为变更按项目版本策略提高 Skill 版本。
 
 构建目录含两个 ZIP、`release-record.json`、`SHA256SUMS` 和 `acceptance-template.json`。记录包括所有源码文件的 SHA-256、大小、两个 ZIP 的 SHA-256 和文件数。ZIP 条目顺序、权限及时间固定，相同内容输入重复构建得到相同字节。输出目录必须在源码外且尚不存在，避免覆盖测试产物。
 
@@ -29,8 +29,8 @@
 ```bash
 python3 scripts/check_package.py
 python3 -m unittest discover -s 05-tests -p 'test_*.py'
-python3 scripts/release.py build --out ../candidate-0.6.9-r7
-python3 scripts/release.py verify --bundle ../candidate-0.6.9-r7
+python3 scripts/release.py build --out ../candidate-0.6.9-r8
+python3 scripts/release.py verify --bundle ../candidate-0.6.9-r8
 ```
 
 构建会检查源码、运行包的链接/锚点/路由、入口版本、锁文件顶层依赖和 Node 脚本文件引用；核对四箱体结构。`verify` 还检查 ZIP CRC、文件清单、逐文件哈希、两包共有运行内容及完整产物校验值。解包检查在临时目录进行，维护检查工具不进入 runtime。
@@ -54,7 +54,7 @@ python3 scripts/release.py verify --bundle ../candidate-0.6.9-r7
 ## 原包晋级
 
 ```bash
-python3 scripts/release.py promote --bundle ../candidate-0.6.9-r7 --acceptance ../candidate-0.6.9-r7/acceptance.json --out ../publish-0.6.9-r7
+python3 scripts/release.py promote --bundle ../candidate-0.6.9-r8 --acceptance ../candidate-0.6.9-r8/acceptance.json --out ../publish-0.6.9-r8
 ```
 
 晋级重新检查候选，要求验收绑定同一个 ZIP、六例覆盖且全部 PASS、审核人/时间/环境完整、证据存在且哈希匹配；随后原字节复制 runtime ZIP，不解包重打。发布目录附验收记录、对应证据文件及校验值。使用该 ZIP 通过内部平台上架；本脚本不会上传或修改线上 Skill。

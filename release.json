@@ -2,7 +2,7 @@
   "schema_version": 1,
   "skill_name": "chart-design-advisor",
   "skill_version": "0.6.9",
-  "distribution_revision": "r7",
+  "distribution_revision": "r8",
   "runtime_files": [
     "01-router/id-migration.md",
     "01-router/method-router.md",
@@ -92,6 +92,7 @@
     "04-assets/semiconductor-four-box-vue/src/types.ts",
     "04-assets/semiconductor-four-box-vue/tsconfig.json",
     "04-assets/semiconductor-four-box-vue/vite.config.ts",
+    "CHANGELOG.md",
     "README.md",
     "SKILL.md",
     "description.md",
@@ -127,7 +128,6 @@
     "05-tests/treemap-cases.md",
     "05-tests/vue-echarts-cases.md",
     "AGENTS.md",
-    "CHANGELOG.md",
     "CONTRIBUTING.md",
     "RELEASING.md",
     "VALIDATION.md",
@@ -149,7 +149,8 @@
     "04-assets/semiconductor-four-box-vue/package.json",
     "04-assets/semiconductor-four-box-vue/package-lock.json",
     "03-references/chart-spec/charts/treemap.md",
-    "03-references/chart-spec/charts/parallel.md"
+    "03-references/chart-spec/charts/parallel.md",
+    "CHANGELOG.md"
   ],
   "acceptance_cases": [
     {

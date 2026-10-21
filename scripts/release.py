@@ -67,10 +67,12 @@ def validate_policy(policy):
             safe_path(path)
     require(not set(runtime) & set(maintenance), 'runtime/maintenance inventories overlap')
     require(set(policy['required_runtime_files']) <= set(runtime), 'required runtime file excluded')
+    require('CHANGELOG.md' in runtime and 'CHANGELOG.md' in policy['required_runtime_files'],
+            'CHANGELOG.md must be a required runtime file')
     require('release.json' in maintenance and 'scripts/check_package.py' in maintenance,
             'maintenance package must include release policy and package checker')
     require(not any(p.startswith(('05-tests/', '.github/', '.githooks/')) or
-                    p in {'AGENTS.md', 'CONTRIBUTING.md', 'CHANGELOG.md', 'VALIDATION.md', 'release.json',
+                    p in {'AGENTS.md', 'CONTRIBUTING.md', 'VALIDATION.md', 'release.json',
                           '03-references/prototype/evaluation-status.md'}
                     for p in runtime), 'maintenance material in runtime inventory')
     cases = policy['acceptance_cases']
