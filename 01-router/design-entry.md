@@ -28,7 +28,7 @@
 
 | 任务 | 入口 |
 | --- | --- |
-| 生成任何图表原型 | 先按[规范索引](../03-references/chart-spec/index.md)选择规范：用户指定优先，明确半导体项目用半导体，其余默认HD；仅加载所选规范及适用专项；[生成与验收](../03-references/prototype/generation-review.md) |
+| 生成或修改图表原型（含仅调整样式、数据更新或交互） | 先按[规范索引](../03-references/chart-spec/index.md)选择规范：用户指定优先，明确半导体项目用半导体，其余默认HD；局部修改只读取受影响元素的适用规范，检查本次改动及直接受影响的已有行为，不重做整图或加载全部专项；[生成与验收](../03-references/prototype/generation-review.md) |
 | 交互网页原型：未指定技术栈或指定 Vue 3/ECharts | [Vue/ECharts 交付规则](../03-references/prototype/vue-echarts-delivery.md)、[产物门槛](../03-references/prototype/delivery-gates.md)；其他技术栈遵从用户要求 |
 | 生成或更新原型工程（任何技术栈） | [Handoff交付](../03-references/prototype/handoff.md)：随工程输出并维护 `HANDOFF.md` |
 | 桌面端图表有Hover提示 | [通用Tooltip组件](../03-references/chart-spec/components/tooltip.md)：按任务/数据结构选择触发与布局 |
