@@ -24,4 +24,4 @@
 
 “几千个Wafer中找Yield异常对象”“按已有等级筛出重点设备”主02；只有“最高/最低”可直接排序。看长期走势用01；紧凑状态概览用03；指标关系/原因线索用04；事件前后回顾用06。下钻后按新任务转交，不自动扩展成诊断流程。
 
-使用本方法读[详解](../03-references/methods/02/detail.md)；来源和触发案例见[案例](../03-references/methods/02/examples.md)，验收见[评价](../03-references/methods/02/evaluation.md)。规范、数据语义与工程交付仍沿用共享入口。
+使用本方法读[详解](../03-references/methods/02/detail.md)；触发案例见[案例](../03-references/methods/02/examples.md)，验收见[评价](../03-references/methods/02/evaluation.md)。规范、数据语义与工程交付仍沿用共享入口。
