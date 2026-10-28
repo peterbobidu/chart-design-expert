@@ -18,4 +18,4 @@
 
 ## 路由与读取
 
-多对象多指标优劣比较走 05；需要容器响应式调整或报告截图准备时可组合 03（按有限空间或截图分支）。采用平滑、多线聚焦或局部缩放时读 [详解](../03-references/methods/01/detail.md)；发生数据处理读 [数据语义](../03-references/data-semantics.md)。需要来源案例读 [案例](../03-references/methods/01/examples.md)。验收见[评价](../03-references/methods/01/evaluation.md)。
+多对象多指标优劣比较走 05；需要容器响应式调整或报告截图准备时可组合 03（按有限空间或截图分支）。采用平滑、多线聚焦或局部缩放时读 [详解](../03-references/methods/01/detail.md)；发生数据处理读 [数据语义](../03-references/data-semantics.md)。需要案例读 [案例](../03-references/methods/01/examples.md)。验收见[评价](../03-references/methods/01/evaluation.md)。
