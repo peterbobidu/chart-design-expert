@@ -1,4 +1,4 @@
-# Method 05 Examples
+# Method 05｜对象多维比较模式｜案例
 
 ## 6 个模型×4 个指标
 
