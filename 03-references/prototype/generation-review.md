@@ -44,6 +44,14 @@
 
 API核对来源为Apache ECharts 5.6.0的[标题](https://github.com/apache/echarts/blob/5.6.0/src/component/title/install.ts)、[轴类型](https://github.com/apache/echarts/blob/5.6.0/src/coord/axisCommonTypes.ts)及[文本/系列类型](https://github.com/apache/echarts/blob/5.6.0/src/util/types.ts)、[图例配置](https://github.com/apache/echarts/blob/5.6.0/src/component/legend/LegendModel.ts)与[图例绘制](https://github.com/apache/echarts/blob/5.6.0/src/component/legend/LegendView.ts)、[绘图区](https://github.com/apache/echarts/blob/5.6.0/src/coord/cartesian/GridModel.ts)。这些是实现依据，不替代目标工程生效检查。
 
+## 安全区隐藏的实现核对
+
+仅使用[过滤正常范围](../methods/01/detail.md#过滤正常范围)时读取本节。现有属性表的5.6.0核对不代表已验证区间折叠能力；先按目标依赖及业务封装核实可用实现，不虚构跨版本配置属性。
+
+先按01规则判定是否需要折叠；无异常时走完整线性轴路径，清除旧折叠带和展开入口。实际折叠时，上方开关及Y轴展开入口与图表共享同一过滤状态。轴边界、刻度、曲线裁剪、命中测试和Tooltip须使用一致的当前坐标映射；双阈值须同时保留上下两侧，不能以只保留一段的普通缩放或删除正常记录冒充中间区间隐藏。目标能力不足时按[能力边界](echarts-capabilities.md)说明自定义绘制、界面层或业务组件需提供的配合；替代方案改变分析含义时先取得用户选择。
+
+缩放、容器resize、数据/阈值更新后重算展开入口位置，不能用固定像素定位。导出若不包含外层DOM，需按实际导出路径保留折叠说明与阈值；分别验证全部正常不折叠、缺失独立统计、共享Limit适用条件、异常点状态与系列线色分离、开关/展开联动、双侧数据、跨界线段、投影标记原值追溯及恢复，不以配置存在或构建成功替代。
+
 ## 尺寸语义
 
 输出宽度、当前宿主宽度、图形优化断点分别解释。用户“做420px宽报告图”只规定输出尺寸，不等于“W≤420才优化”；明确“断点420px”才作为阈值覆盖。半导体配置及原貌行为按[响应式专项](../methods/03/semiconductor-responsive.md)，普通Mini不继承其断点。
